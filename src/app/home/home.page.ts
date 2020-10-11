@@ -10,18 +10,19 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  private bat: string;
-  private temp: string;
-  private x: string;
-  private y: string;
-  private z: string;
+  public bat: string;
+  public bat_int;
+  public temp: string;
+  public x: string;
+  public y: string;
+  public z: string;
 
   constructor(private cdr: ChangeDetectorRef, public navCtrl: NavController, private bt: BluetoothSerial, private alertCtrl: AlertController, private toastCtrl: ToastController) {
     this.checkBluetoothEnabled();
   }
   public dis;
   pairedDeviceID: number = 0;
-
+  
 
   public checkBluetoothEnabled() {
     this.bt.isEnabled().then(success => {
@@ -82,6 +83,8 @@ export class HomePage {
     var str = data;
     data = str.split(","); 
     this.bat = data[0];
+    this.bat_int = Number(this.bat) * 10;
+    console.log(this.bat);
     this.temp = data[1];
     this.x = data[2];
     this.y = data[3];

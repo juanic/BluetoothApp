@@ -1,7 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Dinamómetro   </ion-title>
+      Dinamómetro   
+    </ion-title>
+    <p *ngIf="bat_int>=37">
+        <ion-icon style="zoom:2.0;" class = "icon" name="battery-full-outline"></ion-icon>
+    </p>
+    <p *ngIf="bat_int<37 && bat_int>=32">
+      <ion-icon style="zoom:2.0;" class = "icon" name="battery-half-outline"></ion-icon>
+    </p>
+    <p *ngIf="bat_int<=32">
+      <ion-icon style="zoom:2.0;" class = "icon" name="battery-dead-outline"></ion-icon>
+    </p>
   </ion-toolbar>
 </ion-header>
 
