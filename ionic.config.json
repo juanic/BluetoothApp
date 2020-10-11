@@ -1,0 +1,7 @@
+{
+  "name": "enviarInfo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
