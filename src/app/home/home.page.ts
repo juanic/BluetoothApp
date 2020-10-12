@@ -10,13 +10,14 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  public bat: string;
-  public bat_int;
-  public temp: string;
-  public chgr: string;
-  public x: string;
-  public y: string;
-  public z: string;
+  private bat: string;
+  private bat_int;
+  private temp: string;
+  private chgr: string;
+  private x: string;
+  private y: string;
+  private z: string;
+  private correo: string;
 
   constructor(private cdr: ChangeDetectorRef, public navCtrl: NavController, private bt: BluetoothSerial, private alertCtrl: AlertController, private toastCtrl: ToastController) {
     this.checkBluetoothEnabled();
@@ -24,7 +25,7 @@ export class HomePage {
   }
   public dis;
   pairedDeviceID: number = 0;
-  
+
 
   public checkBluetoothEnabled() {
     this.bt.isEnabled().then(success => {
@@ -57,15 +58,21 @@ export class HomePage {
   }
 
   selectDevice() {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let connectedDevice = this.dis[this.pairedDeviceID];
-    if (!connectedDevice.address) {
-      this.showError('Seleccione dispositivo a conectarse');
-      return;
+    if (!re.test(this.correo)) {
+      alert("Ingrese un e-mail válido para comenzar la captura");
     }
-    let address = connectedDevice.address;
-    let name = connectedDevice.name;
+    else {
+      if (!connectedDevice.address) {
+        this.showError('Seleccione dispositivo a conectarse');
+        return;
+      }
+      let address = connectedDevice.address;
+      let name = connectedDevice.name;
 
-    this.connect(address);
+      this.connect(address);
+    }
   }
 
 

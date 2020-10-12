@@ -48,6 +48,11 @@
     <ion-icon name="close"></ion-icon>Desconectar
   </ion-button>
 
+  <ion-item > 
+    <ion-label position ="floating"> Email paciente: <ion-text color="danger">*</ion-text> </ion-label>
+    <ion-input [(ngModel)]= "correo" type="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
+  </ion-item > 
+
   <ion-item >
     <ion-label>Batería</ion-label>
     <ion-label class="alignme">{{bat}} V</ion-label>
