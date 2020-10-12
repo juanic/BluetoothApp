@@ -3,15 +3,18 @@
     <ion-title>
       Dinamómetro   
     </ion-title>
-    <p *ngIf="bat_int>=37">
+    <div  *ngIf="bat_int>=37 && chgr==0">
         <ion-icon style="zoom:2.0;" class = "icon" name="battery-full-outline"></ion-icon>
-    </p>
-    <p *ngIf="bat_int<37 && bat_int>=32">
+    </div>
+    <div  *ngIf="bat_int<37 && bat_int>=32 && chgr==0">
       <ion-icon style="zoom:2.0;" class = "icon" name="battery-half-outline"></ion-icon>
-    </p>
-    <p *ngIf="bat_int<=32">
+    </div >
+    <div  *ngIf="bat_int<=32 && chgr==0">
       <ion-icon style="zoom:2.0;" class = "icon" name="battery-dead-outline"></ion-icon>
-    </p>
+    </div>
+    <div  *ngIf="chgr==1">
+      <ion-icon style="zoom:2.0;" class = "icon" name="battery-charging-outline"></ion-icon>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -69,8 +72,5 @@
     <ion-label>Acc Z</ion-label>
     <ion-label class="alignme">{{z}} G</ion-label>
   </ion-item>
-
-
-
-
+  
 </ion-content>

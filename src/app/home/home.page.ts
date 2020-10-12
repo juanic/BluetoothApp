@@ -13,12 +13,14 @@ export class HomePage {
   public bat: string;
   public bat_int;
   public temp: string;
+  public chgr: string;
   public x: string;
   public y: string;
   public z: string;
 
   constructor(private cdr: ChangeDetectorRef, public navCtrl: NavController, private bt: BluetoothSerial, private alertCtrl: AlertController, private toastCtrl: ToastController) {
     this.checkBluetoothEnabled();
+    this.chgr = "Charging";
   }
   public dis;
   pairedDeviceID: number = 0;
@@ -81,7 +83,8 @@ export class HomePage {
   public handleData(data) {
     // Recibo el paquete y separo las variables a mostrar
     var str = data;
-    data = str.split(","); 
+    data = str.split(",");
+    this.chgr = data[5];
     this.bat = data[0];
     this.bat_int = Number(this.bat) * 10;
     console.log(this.bat);
@@ -89,6 +92,7 @@ export class HomePage {
     this.x = data[2];
     this.y = data[3];
     this.z = data[4];
+    
   }
   
   async showError(error) {
